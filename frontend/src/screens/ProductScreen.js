@@ -6,7 +6,7 @@ import products from '../products'
 
 
 function ProductScreen({ match }) {
-    const product = products.find((p) => p._id == match.params.id)
+    const product = products.find((p) => p._id === match.params.id)
     return (
         <div>
             <Link to='/' className="btn btn-light my-3">Go Back</Link>
@@ -16,22 +16,22 @@ function ProductScreen({ match }) {
                 </Col>
                 <Col md={3}>
                     <ListGroup variant="flush">
-                        <ListGroupItem>
+                        <ListGroup.Item>
                             <h3>{product.name}</h3>
-                        </ListGroupItem>
+                        </ListGroup.Item>             
 
+                        <ListGroup.Item>
+                            <Rating value={product.rating} text={`${product.numReviews} reviews`} color={'#f8e825'} />
+                        </ListGroup.Item>
+
+                        <ListGroup.Item>
+                            Price £{product.price}
+                        </ListGroup.Item>
+
+                        <ListGroup.Item>
+                            Description {product.description}
+                        </ListGroup.Item>
                     </ListGroup>
-                    <ListGroupItem>
-                        <Rating value={product.rating} text={`${product.numReviews} reviews`} color={'#f8e825'} />
-                    </ListGroupItem>
-
-                    <ListGroupItem>
-                        Price £{product.price}
-                    </ListGroupItem>
-
-                    <ListGroupItem>
-                        Description {product.description}
-                    </ListGroupItem>
                 </Col>
 
                 <Col md={3}>
@@ -58,11 +58,11 @@ function ProductScreen({ match }) {
                                 </Row>
                             </ListGroup.Item>
 
-                            <ListGroupItem>
-                                <Button className="btn-block" disabled={product.countInStock == 0} type="button">
+                            <ListGroup.Item>
+                                <Button className="btn-block" disabled={product.countInStock === 0} type="button">
                                     Add to Cart
                                 </Button>
-                            </ListGroupItem>
+                            </ListGroup.Item>
                         </ListGroup>
                     </Card>
                 </Col>
